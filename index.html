@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гармония</title>
+    <meta name="description" content="Гармония">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================
+           ОСНОВНЫЕ СТИЛИ
+        ============================ */
+        :root {
+            --bg: #3b3b3b;
+            --bg2: #454545;
+            --card: #505050;
+            --gold: #D6B14A;
+            --text: #f5f5f5;
+            --gray: #cccccc;
+            --radius: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(1200px, 92%);
+            margin: auto;
+            max-width: 100%;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(45, 45, 45, .85);
+            backdrop-filter: blur(16px);
+            z-index: 999;
+            border-bottom: 1px solid rgba(214, 177, 74, .15);
+        }
+
+        .header .container {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(214, 177, 74, .25);
+            flex-shrink: 0;
+        }
+
+        .logo h2 {
+            font-size: 24px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: #d5d5d5;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        /* ============================
+           МЕНЮ
+        ============================ */
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .menu a {
+            color: rgba(255, 255, 255, .8);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: .3s;
+            position: relative;
+            padding: 6px 0;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu a:hover {
+            color: var(--gold);
+        }
+
+        .menu .menu-btn {
+            display: inline-block;
+            padding: 10px 28px;
+            border: 2px solid var(--gold);
+            border-radius: 40px;
+            color: white !important;
+            text-decoration: none;
+            transition: .3s;
+            font-weight: 500;
+            font-size: 14px;
+            background: transparent;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu .menu-btn:hover {
+            background: var(--gold);
+            color: #222 !important;
+        }
+
+        .burger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: .3s;
+            z-index: 1000;
+            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .burger:hover {
+            background: rgba(214, 177, 74, .15);
+        }
+
+        /* ============================
+           HERO — НА КОМПЕ ТЕКСТ + КАРТИНКА РЯДОМ
+        ============================ */
+        .hero {
+            padding: 140px 0 70px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .hero-content .subtitle {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.15;
+            font-weight: 700;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #d5d5d5;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .hero-image img {
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .35);
+            filter: brightness(.92);
+            height: 500px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 44px;
+            border: 2px solid var(--gold);
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+            font-weight: 600;
+            font-size: 16px;
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .button:hover {
+            background: var(--gold);
+            color: #222;
+        }
+
+        .button-gold {
+            background: var(--gold);
+            color: #222;
+            border: 2px solid var(--gold);
+        }
+
+        .button-gold:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* ============================
+           МОБИЛЬНАЯ ВЕРСИЯ — ТЕКСТ ПОВЕРХ КАРТИНКИ
+        ============================ */
+        @media (max-width: 768px) {
+            .burger {
+                display: block;
+            }
+
+            .header .container {
+                padding: 0 16px;
+            }
+
+            .logo h2 {
+                font-size: 20px;
+            }
+
+            .logo p {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .logo img {
+                width: 44px;
+                height: 44px;
+            }
+
+            .menu {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(45, 45, 45, .98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 20px 24px 30px;
+                gap: 8px;
+                border-bottom: 1px solid rgba(214, 177, 74, .15);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, .5);
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                z-index: 999;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            /* ============================
+               ОДИНАКОВЫЙ ШРИФТ В БУРГЕР-МЕНЮ
+            ============================ */
+            .menu a {
+                font-size: 18px;
+                padding: 14px 20px;
+                border-radius: 14px;
+                background: rgba(255, 255, 255, .04);
+                text-align: center;
+                color: var(--text);
+                white-space: normal;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+            }
+
+            .menu a:hover {
+                background: rgba(214, 177, 74, .12);
+                color: var(--gold);
+            }
+
+            .menu .menu-btn {
+                text-align: center;
+                padding: 14px 20px;
+                width: 100%;
+                border-radius: 14px;
+                background: rgba(214, 177, 74, .15);
+                border: 1px solid rgba(214, 177, 74, .3);
+                white-space: normal;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                font-size: 18px;
+                letter-spacing: 0.5px;
+                color: var(--text) !important;
+            }
+
+            .menu .menu-btn:hover {
+                background: rgba(214, 177, 74, .25);
+                color: var(--gold) !important;
+            }
+
+            /* HERO — ТЕКСТ ПОВЕРХ КАРТИНКИ */
+            .hero {
+                padding: 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: stretch;
+                position: relative;
+            }
+
+            .hero-grid {
+                display: block !important;
+                position: relative;
+                width: 100%;
+                padding: 0;
+            }
+
+            .hero-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+
+            .hero-image img {
+                height: 100vh;
+                border-radius: 0;
+                object-fit: cover;
+                filter: brightness(.35);
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                padding: 120px 24px 60px;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .hero h1 {
+                font-size: 30px !important;
+                color: #fff;
+                text-shadow: 0 2px 30px rgba(0, 0, 0, .6);
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 15px !important;
+                color: rgba(255, 255, 255, .9);
+                text-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+                line-height: 1.6;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 100%;
+                align-items: center;
+            }
+
+            .hero-buttons .button,
+            .hero-buttons .button-gold {
+                text-align: center;
+                padding: 14px 30px;
+                width: 100%;
+                font-size: 15px;
+                box-sizing: border-box;
+            }
+
+            .hero-content .subtitle {
+                font-size: 12px;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .burger {
+                display: none !important;
+            }
+
+            .menu {
+                display: flex !important;
+                position: static !important;
+                background: none !important;
+                backdrop-filter: none !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                flex-direction: row !important;
+                gap: 35px !important;
+                max-height: none !important;
+                overflow: visible !important;
+            }
+
+            .menu a {
+                background: none !important;
+                padding: 6px 0 !important;
+                font-size: 15px !important;
+                border-radius: 0 !important;
+                color: rgba(255, 255, 255, .8) !important;
+                font-family: 'Montserrat', sans-serif !important;
+            }
+
+            .menu a:hover {
+                background: none !important;
+                color: var(--gold) !important;
+            }
+
+            .menu .menu-btn {
+                background: transparent !important;
+                padding: 10px 28px !important;
+                border: 2px solid var(--gold) !important;
+                border-radius: 40px !important;
+                color: white !important;
+                font-size: 14px !important;
+                font-family: 'Montserrat', sans-serif !important;
+            }
+
+            .menu .menu-btn:hover {
+                background: var(--gold) !important;
+                color: #222 !important;
+            }
+        }
+
+        /* ============================
+           ОСТАЛЬНЫЕ СЕКЦИИ
+        ============================ */
+        .services {
+            padding: 90px 0;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .services h2::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--gold);
+            margin: 16px auto 0;
+            border-radius: 4px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: .35s;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(214, 177, 74, .35);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .3), 0 0 25px rgba(214, 177, 74, .12);
+        }
+
+        .card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;      /* ← заполняет блок, но обрезает края */
+    display: block;
+    filter: brightness(.88);
+    transition: .5s;
+}
+
+        .card:hover img {
+            transform: scale(1.06);
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .service-number {
+            display: inline-block;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 18px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: 600;
+            transition: .3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card-link:hover {
+            letter-spacing: 1px;
+        }
+
+        .about {
+            padding: 100px 0;
+            background: var(--bg2);
+            overflow: hidden;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-image img {
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .3);
+            filter: brightness(.92);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .about-content h2 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            line-height: 1.3;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .feature {
+            background: #575757;
+            padding: 24px;
+            border-radius: 20px;
+            text-align: center;
+            transition: .35s;
+            font-size: 34px;
+        }
+
+        .feature:hover {
+            background: #5f5f5f;
+            transform: translateY(-6px);
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            margin-top: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .gallery {
+            padding: 100px 0;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 38px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-grid img {
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: .35s;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        .contacts {
+            padding: 100px 0;
+            background: var(--bg2);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .contacts h2 {
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 38px;
+        }
+
+        .contacts p {
+            font-size: 19px;
+            margin: 16px 0;
+            color: var(--gray);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        .contacts .button {
+            margin-top: 35px;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: #2f2f2f;
+            text-align: center;
+            border-top: 1px solid rgba(214, 177, 74, .15);
+            overflow: hidden;
+        }
+
+        .footer-logo {
+            width: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(214, 177, 74, .2);
+        }
+
+        footer p {
+            color: #bdbdbd;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        /* ============================
+           АДАПТИВ
+        ============================ */
+        @media (max-width: 1024px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .about-content h2 {
+                font-size: 28px;
+            }
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .services h2 {
+                font-size: 30px;
+            }
+            .contacts h2 {
+                font-size: 28px;
+            }
+            .gallery h2 {
+                font-size: 30px;
+            }
+
+            .services {
+                padding: 60px 0;
+            }
+            .about {
+                padding: 60px 0;
+            }
+            .gallery {
+                padding: 60px 0;
+            }
+            .contacts {
+                padding: 60px 0;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero h1 {
+                font-size: 72px;
+            }
+        }
+
+        /* ============================
+           АНИМАЦИИ
+        ============================ */
+        .hero,
+        .services,
+        .about,
+        .gallery,
+        .contacts {
+            animation: fadeUp .9s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #343434;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e2c15f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Логотип">
+                <div>
+                    <h2>Гармония</h2>
+                </div>
+            </a>
+
+            <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+                ☰
+            </button>
+
+            <nav class="menu" id="mainMenu">
+                <a href="#services">Услуги</a>
+                <a href="#about">О нас</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#contacts">Контакты</a>
+                <a href="#" class="menu-btn" id="bookBtn">Записаться</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Красота начинается с заботы о себе</h1>
+                <p>Профессиональный уход за лицом и телом. Современные технологии, комфорт и индивидуальный подход.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="button button-gold" id="heroBookBtn">Записаться сейчас</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+          <h2>Наши услуги</h2>
+          <div class="cards">
+            <!-- КАРТОЧКА 1 -->
+            <div class="card">
+              <img src="images/massage.jpg" alt="Биоэнергетический массаж">
+              <div class="card-content">
+                <span class="service-number">01</span>
+                <h3>Биоэнергетический массаж</h3>
+                <p>Глубокое расслабление, восстановление внутреннего баланса и снятие эмоционального напряжения.</p>
+                <a href="#" class="card-link">Подробнее →</a>
+              </div>
+            </div>
+      
+            <!-- КАРТОЧКА 2 -->
+            <div class="card">
+              <img src="images/cleaning.jpg" alt="Чистка лица">
+              <div class="card-content">
+                <span class="service-number">02</span>
+                <h3>Чистка лица</h3>
+                <p>Комплексное очищение кожи с подбором профессионального ухода.</p>
+                <a href="#" class="card-link">Подробнее →</a>
+              </div>
+            </div>
+      
+            <!-- КАРТОЧКА 3 -->
+            <div class="card">
+              <img src="images/peeling.jpg" alt="Пилинг">
+              <div class="card-content">
+                <span class="service-number">03</span>
+                <h3>Пилинг</h3>
+                <p>Обновление кожи, улучшение цвета лица и повышение тонуса.</p>
+                <a href="#" class="card-link">Подробнее →</a>
+              </div>
+            </div>
+      
+            <!-- КАРТОЧКА 4 -->
+            <div class="card">
+              <img src="images/lifting.jpg" alt="Лифтинг">
+              <div class="card-content">
+                <span class="service-number">04</span>
+                <h3>Лифтинг</h3>
+                <p>Современные процедуры для упругости кожи и естественного омоложения.</p>
+                <a href="#" class="card-link">Подробнее →</a>
+              </div>
+            </div>
+      
+            <!-- КАРТОЧКА 5 -->
+            <div class="card">
+              <img src="images/laser.jpg" alt="Лазерная эпиляция">
+              <div class="card-content">
+                <span class="service-number">05</span>
+                <h3>Лазерная эпиляция</h3>
+                <p>Комфортное и эффективное удаление нежелательных волос с использованием современного оборудования.</p>
+                <a href="#" class="card-link">Подробнее →</a>
+              </div>
+            </div>
+      
+            <!-- КАРТОЧКА 6 -->
+            <div class="card">
+              <img src="images/odel.jpg" alt="Детокс и сжигание калорий">
+              <div class="card-content">
+                <span class="service-number">06</span>
+                <h3>Детокс и сжигание калорий</h3>
+                <p>30-минутный сеанс в термоодеяле поможет сжечь от 300 до 600 калорий.</p>
+                <a href="#" class="card-link">Подробнее →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-image">
+                <img src="images/salon.jpg" alt="Салон">
+            </div>
+            <div class="about-content">
+                <span class="subtitle">О нашем салоне</span>
+                <h2>Место, где красота встречается с гармонией</h2>
+                <p>«Гармония» — это пространство, где современные технологии сочетаются с индивидуальным подходом и атмосферой спокойствия.</p>
+                <div class="features">
+                    <div class="feature">
+                        🌿
+                        <h3>Индивидуальный подход</h3>
+                    </div>
+                    <div class="feature">
+                        ✨
+                        <h3>Современное оборудование</h3>
+                    </div>
+                    <div class="feature">
+                        💛
+                        <h3>Сертифицированные специалисты</h3>
+                    </div>
+                    <div class="feature">
+                        ☕
+                        <h3>Уютная атмосфера</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2>Галерея</h2>
+            <div class="gallery-grid">
+                <img src="images/hero.jpg">
+                <img src="images/massage.jpg">
+                <img src="images/cleaning.jpg">
+                <img src="images/salon.jpg">
+            </div>
+        </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <h2>Контакты</h2>
+            <p>📍 Ваш адрес</p>
+            <p>☎ +7 (999) 123-45-67</p>
+            <p>Ежедневно 10:00–21:00</p>
+            <a href="#" class="button">Записаться</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <img src="images/logo.png" class="footer-logo">
+            <p>© 2026 Гармония</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.getElementById('burgerBtn');
+            const menu = document.getElementById('mainMenu');
+            const bookBtn = document.getElementById('bookBtn');
+            const heroBookBtn = document.getElementById('heroBookBtn');
+
+            // Функция закрытия меню
+            function closeMenu() {
+                menu.classList.remove('active');
+                burger.textContent = '☰';
+            }
+
+            // Функция прокрутки к hero
+            function scrollToHero() {
+                closeMenu();
+                const heroSection = document.getElementById('hero');
+                if (heroSection) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = heroSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Открытие/закрытие бургера
+            burger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+                burger.textContent = menu.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Кнопка "Записаться" в бургер-меню → на главную
+            bookBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                scrollToHero();
+            });
+
+            // Кнопка "Записаться сейчас" на главной (просто закрывает меню, если оно открыто)
+            heroBookBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeMenu();
+            });
+
+            // Остальные ссылки в меню → плавная прокрутка к секциям
+            menu.querySelectorAll('a:not(#bookBtn)').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href;
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            closeMenu();
+                            const headerHeight = document.querySelector('.header').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    } else {
+                        closeMenu();
+                    }
+                });
+            });
+
+            // Закрытие при клике вне меню
+            document.addEventListener('click', function(e) {
+                if (!menu.contains(e.target) && !burger.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
